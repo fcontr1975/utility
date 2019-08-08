@@ -15,14 +15,14 @@ fc.gettags = function(p){
 }
 
 fc.find = function(t, n, c){
-	/* 
+    /* 
     fc.find() : Finds tags (String t)
     by the content (String c) 
     of a given attribute (String n)
     and returns an array of those tags.
     
     USAGE: fc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term);
-	*/
+    */
     
     // Initialize our return array
     var tLIst = new Array();
@@ -49,4 +49,9 @@ fc.find = function(t, n, c){
         
         return tList;
 	}
+}
+
+fc.dec = function(d){
+    // returns a floating point digit rounded to the nearest 2 decimal points.
+    return (Math.round(d * 100))/100;
 }
