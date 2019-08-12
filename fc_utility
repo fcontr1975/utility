@@ -1,57 +1,76 @@
 /* Federico Contreras vanilla JS utility functions ... */
-    
 var fc = new Object();
-
-fc.getid = function(p){
-	// gets an item by id and returns that item
-	var r = document.getElementById(p);
-	return r;
+fc.getid = function(p) {
+    // gets an item by id and returns that item
+    var r = document.getElementById(p);
+    return r;
 }
-
-fc.gettags = function(p){
-	// gets all elements of a given tag returns a nodelist / array of those items
-	var r = document.getElementsByTagName(p);
-	return r;
+fc.gettags = function(p) {
+    // gets all elements of a given tag returns a nodelist / array of those items
+    var r = document.getElementsByTagName(p);
+    return r;
 }
-
-fc.find = function(t, n, c){
+fc.find = function(t, n, c) {
     /* 
-    fc.find() : Finds tags (String t)
-    by the content (String c) 
-    of a given attribute (String n)
-    and returns an array of those tags.
-    
-    USAGE: fc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term);
-    */
-    
+            fc.find() : Finds tags (String t)
+            by the content (String c) 
+            of a given attribute (String n)
+            and returns an array of those tags.
+            
+            USAGE: fc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term);
+        	*/
+
     // Initialize our return array
-    var tLIst = new Array();
-        
-    if(t == null || n == undefined || c == undefined){
-		console.log("fc.find() : Finds tags (String t) by the content (String c) of a given attribute (String n) and returns an array of those tags\nUSAGE:\nfc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term)");
-        
-    //alert("fc.find() : finds tags (String t) by the content (String c) of a given attribute (String n) and returns an array of those tags\nUSAGE:\nfc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term)");
-    
-	} else {
+    var tList = new Array();
+
+    if (t == null || n == undefined || c == undefined) {
+        console.log("fc.find() : Finds tags (String t) by the content (String c) of a given attribute (String n) and returns an array of those tags\nUSAGE:\nfc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term )");
+
+        //alert("fc.find() : finds tags (String t) by the content (String c) of a given attribute (String n) and returns an array of those tags\nUSAGE:\nfc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term)");
+    } else {
         // get list of tags
-		var l = document.getElementsByTagName(t);
+        var l = document.getElementsByTagName(t);
         // now look for which tags have the attribute containing the specific search term
-		for(var i = 0; i<l.length; i++){
-			if (l[i].getAttribute(n) != undefined){
+        for (var i = 0; i < l.length; i++) {
+            if (l[i].getAttribute(n) != undefined) {
                 // found a non-blank attribute of the correct name, do we add it?
-				// console.log("Found attribute: "+n+": "+l[i].getAttribute(n));
-                if(l[i].getAttribute(n) == c){
-                    console.log("Found matching (\""+c+"\") attribute: "+n+": \""+l[i].getAttribute(n)+"\"");
+                // console.log("Found attribute: "+n+": "+l[i].getAttribute(n));
+
+                if (l[i].getAttribute(n) == c) {
+                    console.log("Found matching (\"" + c + "\") attribute: " + n + ": \"" + l[i].getAttribute(n) + "\"");
                     tLIst.push(l[i]);
                 }
-			}
-		}
-        
+            }
+        }
+
         return tList;
-	}
+    }
 }
 
-fc.dec = function(d){
+fc.dec = function(d) {
     // returns a floating point digit rounded to the nearest 2 decimal points.
-    return (Math.round(d * 100))/100;
+    return (Math.round(d * 100)) / 100;
+}
+
+fc.isLeap = function(y) {
+    //returns true if y is a leap year
+    return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);
+}
+
+
+
+fc.reload = false;
+fc.reloader = function() {
+    if (fc.reload == true || fc.reload == 1) {
+        console.log("autoReload");
+        var resetDigit = Math.round(Math.random() * 1000);
+        var newurl = window.location.href.split("?")[0];
+        console.log(newurl + "?reload=" + resetDigit);
+        setTimeout(function() {
+            window.location.href = newurl + "?reload=" + resetDigit;
+        }, 1000);
+    }
+}
+window.onload = function() {
+    fc.reloader();
 }
