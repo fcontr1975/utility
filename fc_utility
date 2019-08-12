@@ -12,14 +12,14 @@ fc.gettags = function(p) {
 }
 fc.find = function(t, n, c) {
     /* 
-            fc.find() : Finds tags (String t)
-            by the content (String c) 
-            of a given attribute (String n)
-            and returns an array of those tags.
+    fc.find() : Finds tags (String t)
+    by the content (String c) 
+    of a given attribute (String n)
+    and returns an array of those tags.
             
-            USAGE: fc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term);
-        	*/
-
+    USAGE: fc.find( String t = Tag Name, String n = Attribute Name, String c = Content Search Term);
+    */
+    
     // Initialize our return array
     var tList = new Array();
 
