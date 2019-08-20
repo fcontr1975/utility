@@ -1,15 +1,29 @@
 /* Federico Contreras vanilla JS utility functions ... */
 var fc = new Object();
+
+fc.getw = function(){
+	// gets window width
+	return window.innerWidth;
+}
+
+fc.geth = function(){
+	// gets window height
+	return window.innerHeight;
+}
+
 fc.getid = function(p) {
     // gets an item by id and returns that item
     var r = document.getElementById(p);
     return r;
 }
+
 fc.gettags = function(p) {
     // gets all elements of a given tag returns a nodelist / array of those items
     var r = document.getElementsByTagName(p);
     return r;
 }
+
+
 fc.find = function(t, n, c) {
     /* 
     fc.find() : Finds tags (String t)
@@ -57,10 +71,15 @@ fc.isLeap = function(y) {
     return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);
 }
 
-
-
+fc.reloadFrequency = 1000;
 fc.reload = false;
+
 fc.reloader = function() {
+	/* 
+	Loads the page on a fresh URL to dodge cache issues.
+	to load slower or faster, modify fc.reloadFrequency
+	to a higher or lower value (in ms).
+	*/
     if (fc.reload == true || fc.reload == 1) {
         console.log("autoReload");
         var resetDigit = Math.round(Math.random() * 1000);
@@ -68,9 +87,12 @@ fc.reloader = function() {
         console.log(newurl + "?reload=" + resetDigit);
         setTimeout(function() {
             window.location.href = newurl + "?reload=" + resetDigit;
-        }, 1000);
-    }
+        }, fc.reloadFrequency);
+    } else {
+				
+	}
 }
+
 window.onload = function() {
     fc.reloader();
 }
