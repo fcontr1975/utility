@@ -11,6 +11,11 @@ fc.geth = function(){
 	return window.innerHeight;
 }
 
+fc.getdpr = function(){
+	var r = window.devicePixelRatio;
+	return r;
+}
+
 fc.getid = function(p) {
     // gets an item by id and returns that item
     var r = document.getElementById(p);
@@ -18,11 +23,16 @@ fc.getid = function(p) {
 }
 
 fc.gettags = function(p) {
-    // gets all elements of a given tag returns a nodelist / array of those items
+    // gets all elements of a given tag and returns a nodelist / array of those items
     var r = document.getElementsByTagName(p);
     return r;
 }
 
+fc.getclass = function(p){
+	// gets all elemenst with a given class name and returns a nodelist / array of those items
+	var r = document.getElementsByClassName(p);
+	return r;
+}
 
 fc.find = function(t, n, c) {
     /* 
@@ -89,7 +99,7 @@ fc.reloader = function() {
             window.location.href = newurl + "?reload=" + resetDigit;
         }, fc.reloadFrequency);
     } else {
-				
+		// do nothing
 	}
 }
 
