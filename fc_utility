@@ -81,6 +81,34 @@ fc.isLeap = function(y) {
     return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);
 }
 
+//Ingest an XML file
+fc.xreq = new XMLHttpRequest();
+fc.responseXML;
+// Define which file to open and send the request.
+fc.getxml = function (t = undefined){
+	if(t != undefined){
+		fc.xreq.open("GET", t, false);
+		fc.xreq.setRequestHeader("Content-Type", "text/xml");
+		fc.xreq.onreadystatechange = function () {
+			if(fc.xreq.readyState === 4 && fc.xreq.status === 200) {
+				console.log("\n\n\nRESPONSETEXT BELOW:");
+				console.log(fc.xreq.responseText);
+				var domparser = new DOMParser();
+				// XML doc
+				newXML = domparser.parseFromString(fc.xreq.responseText, "text/html");
+				console.log("\n\n\nXMLDOC BELOW:");
+				console.log(newXML);
+				fc.responseXML = newXML;
+				return newXML;
+			}
+		}
+		fc.xreq.send();
+	} else {
+		console.log("Blank XML Request");
+	}
+}
+
+// reload the page automatically at a certain frequency
 fc.reloadFrequency = 1000;
 fc.reload = false;
 
