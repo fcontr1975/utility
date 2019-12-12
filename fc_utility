@@ -108,6 +108,23 @@ fc.getxml = function (t = undefined){
 	}
 }
 
+fc.delete_cookie = function(name, path, domain ) {
+	if( get_cookie( name ) ) {
+		document.cookie = name + "=" +
+		((path) ? ";path="+path:"")+
+		((domain)?";domain="+domain:"") +
+		";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+	}
+}
+
+fc.dc(name) {
+	document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+
+
+
+
 // reload the page automatically at a certain frequency
 fc.reloadFrequency = 1000;
 fc.reload = false;
